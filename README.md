@@ -1,6 +1,5 @@
 # plaginOffice
 
-sdk settings:
 ## sdk settings
 Before starting plagin do:
 
