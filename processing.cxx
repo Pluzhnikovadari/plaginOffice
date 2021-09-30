@@ -44,22 +44,24 @@ void Add_text(Reference < XFrame > & rxFrame, rtl::OUString language, int words_
 
     rtl::OUString result = "";
     srand(time(NULL));
+    int len;
     for (std::size_t i = 0; i < words_count; i++) {
         rtl::OUString word = "";
+        len = rand() % word_leght + 1;
         if (language == "latin") {
             std::u16string const charset = u"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
-            for (int i = 0; i < word_leght; i++)
+            for (int i = 0; i < len; i++)
                 word += (rtl::OUString) charset[rand() % 51];
         } else if (language == "cyrillic") {
             std::u16string const charset = u"абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
 
-            for (int i = 0; i < word_leght; i++)
+            for (int i = 0; i < len; i++)
                 word += (rtl::OUString) charset[rand() % 65];
         } else {
             std::u16string const charset = u"абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
-            for (int i = 0; i < word_leght; i++)
+            for (int i = 0; i < len; i++)
                 word += (rtl::OUString) charset[rand() % 117];
         }
 
@@ -86,7 +88,7 @@ bool isLatin(rtl::OUString x)
 {
     bool flag = false;
     std::u16string const charset = u"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    for (int i; i <= 117; i++) {
+    for (int i; i <= 51; i++) {
         if ((rtl::OUString) charset[i] == x) {
             flag = true;
             break;
@@ -112,7 +114,7 @@ void Statistics(Reference < XFrame > & mxFrame) {
         sal_Unicode last_let = (xTextCursor -> getString())[count];
 
         if (isLetter((OUString) last_let)) {
-            for (int k = 0; k < 58; k++) {
+            for (int k = 0; k < 59; k++) {
                 if ((OUString) last_let == (rtl::OUString) big[k]) {
                     last_let = small[k];
                     break;
